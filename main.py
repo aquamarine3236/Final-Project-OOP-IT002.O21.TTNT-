@@ -93,18 +93,19 @@ class Button:
             if self.rect.collidepoint(event.pos):
                 # Set the clicked attribute to True to indicate that the button is currently clicked
                 self.clicked = True
+
         # Check if the event is a mouse button up event and if it's the left mouse button (button 1)
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
-            
+
             # Check if the button was previously clicked and the mouse click happened inside the button's rectangle
             if self.clicked and self.rect.collidepoint(event.pos):
-                
+
                 # Reset the clicked attribute to False since the button is released
                 self.clicked = False
-                
+
                 # Return True to indicate that the button was clicked and released
                 return True
-                
+            
             # Reset the clicked attribute to False if the mouse click didn't occur within the button's rectangle
             self.clicked = False
             
@@ -671,7 +672,7 @@ class Game:
     def create_initial_clouds(self):
         # Generate initial clouds at random positions within the upper half of the screen
         for _ in range(7):
-            cloud = Scale_Block("img_block_cloud.png", random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT // 2), BLOCK_SIZE, BLOCK_SIZE)
+            cloud = Scale_Block("img_block_cloud.png", random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT // 3), BLOCK_SIZE, BLOCK_SIZE)
             
             # Add the cloud to the clouds sprite group and all sprites group
             self.clouds.add(cloud)
@@ -681,7 +682,7 @@ class Game:
         # Create additional clouds if the current cloud count is below a certain threshold
         if self.current_cloud < random.randint(10, 15):  
             # Generate a new cloud at a random position within a certain range
-            cloud = Scale_Block("img_block_cloud.png", self.camera_x + SCREEN_WIDTH + random.randint(0, int(SCREEN_WIDTH * 0.2)), random.randint(0, SCREEN_HEIGHT // 2), BLOCK_SIZE, BLOCK_SIZE)
+            cloud = Scale_Block("img_block_cloud.png", self.camera_x + SCREEN_WIDTH + random.randint(0, int(SCREEN_WIDTH * 0.2)), random.randint(0, SCREEN_HEIGHT // 3), BLOCK_SIZE, BLOCK_SIZE)
             
             # Add the cloud to the clouds sprite group and all sprites group
             self.clouds.add(cloud)
@@ -778,6 +779,8 @@ class Game:
                     if not self.character.immune_to_damage:
                         self.character.health -= enemy.current_health 
                         self.hitting_sound.play() 
+                        self.character.speed_y = -2
+                        self.character.on_ground = False
                         self.character_health_bar.update(self.character.health)
        
                         # Trigger game over condition if character's health drops to zero
@@ -994,7 +997,3 @@ while True:
 
     # Update the display
     pygame.display.flip()
-
-
-
-
