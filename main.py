@@ -95,14 +95,19 @@ class Button:
                 self.clicked = True
         # Check if the event is a mouse button up event and if it's the left mouse button (button 1)
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+            
             # Check if the button was previously clicked and the mouse click happened inside the button's rectangle
             if self.clicked and self.rect.collidepoint(event.pos):
+                
                 # Reset the clicked attribute to False since the button is released
                 self.clicked = False
+                
                 # Return True to indicate that the button was clicked and released
                 return True
+                
             # Reset the clicked attribute to False if the mouse click didn't occur within the button's rectangle
             self.clicked = False
+            
         # Return False if the event was not related to the button or the button was not clicked and released
         return False
 
@@ -989,5 +994,7 @@ while True:
 
     # Update the display
     pygame.display.flip()
+
+
 
 
