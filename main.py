@@ -613,7 +613,7 @@ class Game:
         i = random.randint(5, 15)
 
         # Loop until reaching the specified x-coordinate limit
-        while i <= 300:
+        while i <= 290:
             # Randomly decide whether to create a question block or a brick block
             if random.randint(1, 2) == 2:
 
