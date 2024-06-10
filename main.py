@@ -935,7 +935,7 @@ class Game:
 
 
 # Set up a fullscreen display
-start_screen = pygame.display.set_mode((0, 0), (pygame.FULLSCREEN))
+start_screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Load and scale the background image to fit the screen
 image = pygame.image.load('img_start_background.png')
